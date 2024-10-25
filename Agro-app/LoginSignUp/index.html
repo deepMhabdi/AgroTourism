@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chalo Kisan Booking</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="shortcut icon" href="/Agro-app/images/logo.jpg" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Poppins:wght@400;700&display=swap"
+        rel="stylesheet">
+
+        <style>
+          body {
+              font-family: 'Poppins', serif;
+          }
+  
+          h1,
+          h2,
+          h3,
+          h4,
+          h5,
+          h6,
+          .font-extrabold {
+              font-family: 'Poppins', sans-serif;
+          }
+  
+          p {
+              line-height: 1.8;
+          }
+  
+          .text-lg {
+              font-size: 1.125rem;
+          }
+  
+          button {
+              font-family: 'Poppins', sans-serif;
+          }
+      </style>
+
+  <!-- Firebase App (v8) -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <!-- Firebase Firestore -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <!-- Firebase Auth -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBbI1uirkvkjImHdCTt5jc5w5Rw_lGQG2M",
+      authDomain: "agro-tourism-82512.firebaseapp.com",
+      projectId: "agro-tourism-82512",
+      storageBucket: "agro-tourism-82512.appspot.com",
+      messagingSenderId: "995431940902",
+      appId: "1:995431940902:web:7767ddaae59e3cf74377e7",
+      measurementId: "G-5VVNHV48GF"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    var db = firebase.firestore();
+    var auth = firebase.auth();
+
+    // Function to submit booking data
+    async function submitBookingData(bookingData) {
+      try {
+        const docRef = await db.collection("bookings").add(bookingData);
+        return { success: true, id: docRef.id };
+      } catch (error) {
+        console.error("Error adding document: ", error);
+        return { success: false, error: error.message };
+      }
+    }
+
+    async function getCurrentUser() {
+      return new Promise((resolve) => {
+        auth.onAuthStateChanged((user) => {
+          resolve(user); // Resolve the user object or null
+        });
+      });
+    }
+
+    async function signOut() {
+      try {
+        await auth.signOut();
+        alert("You have signed out successfully.");
+        window.location.reload(); // Reload the page to reflect the sign-out
+        window.location.href = "./../landingpage/index.html";
+      } catch (error) {
+        console.error("Sign Out Error", error);
+      }
+    }
+
+    async function signIn() {
+      try {
+        window.location.href = "./signin.html";
+      } catch (error) {
+        console.error("Sign In Error", error);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', async function () {
+      const form = document.getElementById('bookingForm');
+      const signInOutButton = document.getElementById('signInOutButton');
+
+      const user = await getCurrentUser();
+
+      if (user) {
+        signInOutButton.innerText = "Sign Out";
+        signInOutButton.onclick = signOut; // Set sign out function
+      } else {
+        signInOutButton.innerText = "Sign In";
+        signInOutButton.onclick = signIn; // Set sign in function
+      }
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Prevent default form submission
+
+        if (!user) {
+          alert('Please sign in to book.'); // Alert the user
+          return; // Stop further execution
+        }
+
+        // Collect form data
+        const bookingData = {
+          userRef: user.uid, // Save user reference
+          fullName: document.getElementById('fullName').value,
+          phone: document.getElementById('phone').value,
+          adults: document.getElementById('adults').value,
+          children: document.getElementById('children').value,
+          email: document.getElementById('email').value,
+          visitDate: document.getElementById('visitDate').value,
+          duration: document.getElementById('duration').value,
+          accommodation: document.getElementById('accommodation').value,
+          message: document.getElementById('message').value
+        };
+
+        // Submit data to Firestore
+        const result = await submitBookingData(bookingData);
+
+        if (result.success) {
+          alert(`Booking successful! Your booking ID: ${result.id}`);
+          form.reset(); // Reset form after successful submission
+        } else {
+          alert('Error submitting booking: ' + result.error);
+        }
+      });
+    });
+  </script>
+
+  <script defer>
+    function toggleMenu() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    }
+
+    window.onload = function () {
+      document.getElementById('animated-navbar').classList.add('animate__fadeInDown');
+      document.getElementById('animated-hero').classList.add('animate__fadeIn');
+    };
+  </script>
+</head>
+
+<body class="bg-gray-100">
+
+  <nav id="animated-navbar" class="bg-white shadow-lg animate__animated">
+    <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+      <div class="flex items-center">
+        <img src="/Agro-app/images/logo.jpg" alt="Logo"
+            class="w-10 h-10 mr-3 rounded-full border-2 border-gray-300"> 
+        <div class="text-xl font-bold text-gray-800">Chalo Kisan</div>
+    </div>
+      <div class="md:hidden">
+        <button class="text-gray-800 focus:outline-none" onclick="toggleMenu()">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Menu Links with hover effect same as Marathi button -->
+      <div class="hidden md:flex space-x-6">
+        <a href="/Agro-app/landingpage/index.html"
+          class="text-gray-800 text-xl px-4 py-2 rounded-lg hover:bg-yellow-400 hover:text-gray-900 transition duration-300">Home</a>
+        <a href="/Agro-app/Activites/activities.html"
+          class="text-gray-800 text-xl px-4 py-2 rounded-lg hover:bg-yellow-400 hover:text-gray-900 transition duration-300">Activities</a>
+        <a href="/Agro-app/CardsSection/CardSection.html"
+          class="text-gray-800 text-xl px-4 py-2 rounded-lg hover:bg-yellow-400 hover:text-gray-900 transition duration-300">Packages</a>
+
+      </div>
+    </div>
+
+    <!-- Mobile Menu (hidden by default) -->
+    <div id="mobile-menu" class="hidden md:hidden">
+      <div class="px-6 py-2 space-y-2 bg-white shadow-lg">
+        <a href="/Agro-app/landingpage/index.html"
+          class="block text-gray-800 text-xl px-4 py-2 rounded-lg hover:bg-yellow-400 hover:text-gray-900 transition duration-300">Home</a>
+        <a href="/Agro-app/Activites/activities.html"
+          class="block text-gray-800 text-xl px-4 py-2 rounded-lg hover:bg-yellow-400 hover:text-gray-900 transition duration-300">Activities</a>
+        <a href="/Agro-app/CardsSection/CardSection.html"
+          class="block text-gray-800 text-xl px-4 py-2 rounded-lg hover:bg-yellow-400 hover:text-gray-900 transition duration-300">Packages</a>
+        
+      </div>
+    </div>
+  </nav>
+  <br><br>
+  <div class="max-w-lg mx-auto my-10 p-6 bg-white rounded-lg shadow-lg relative">
+    <button id="signInOutButton"
+      class="absolute top-3 right-3 bg-yellow-500 text-white font-bold py-2 px-4 rounded-md hover:bg-yellow-600 transition duration-300">Sign
+      In</button>
+    <h1 class="text-4xl font-bold text-center mb-8 text-gray-800">BOOKING</h1>
+    <div class="border-b-2 border-yellow-400 w-16 mx-auto mb-8"></div>
+
+    <form id="bookingForm">
+      <div class="mb-4">
+        <label for="fullName" class="block text-sm font-medium text-gray-700">Full Name</label>
+        <input type="text" id="fullName" name="fullName"
+          class="mt-1 block w-full p-3 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500"
+          placeholder="Full Name" required>
+      </div>
+
+      <div class="mb-4">
+        <label for="phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
+        <input type="tel" id="phone" name="phone"
+          class="mt-1 block w-full p-3 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500"
+          placeholder="Phone Number" required>
+      </div>
+
+      <div class="mb-4">
+        <label for="adults" class="block text-sm font-medium text-gray-700">Select Adults</label>
+        <select id="adults" name="adults"
+          class="mt-1 block w-full p-3 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500"
+          required>
+          <option value="">Select Adults</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4+</option>
+        </select>
+      </div>
+
+      <div class="mb-4">
+        <label for="children" class="block text-sm font-medium text-gray-700">Select Children</label>
+        <select id="children" name="children"
+          class="mt-1 block w-full p-3 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500"
+          required>
+          <option value="">Select Children</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+
+      <div class="mb-4">
+        <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+        <input type="email" id="email" name="email"
+          class="mt-1 block w-full p-3 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500"
+          placeholder="Email Address" required>
+      </div>
+
+      <div class="mb-4">
+        <label for="visitDate" class="block text-sm font-medium text-gray-700">Date of Visit</label>
+        <input type="date" id="visitDate" name="visitDate"
+          class="mt-1 block w-full p-3 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500"
+          required>
+      </div>
+
+      <div class="mb-4">
+        <label for="duration" class="block text-sm font-medium text-gray-700">Duration of Stay (days)</label>
+        <input type="number" id="duration" name="duration" min="1"
+          class="mt-1 block w-full p-3 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500"
+          placeholder="Duration of Stay" required>
+      </div>
+
+      <div class="mb-4">
+        <label for="accommodation" class="block text-sm font-medium text-gray-700">Accommodation Type</label>
+        <select id="accommodation" name="accommodation"
+          class="mt-1 block w-full p-3 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500"
+          required>
+          <option value="">Select Accommodation</option>
+          <option value="Hotel">Hotel</option>
+          <option value="Cottage">Cottage</option>
+          <option value="Tent">Tent</option>
+        </select>
+      </div>
+
+      <div class="mb-4">
+        <label for="message" class="block text-sm font-medium text-gray-700">Additional Information</label>
+        <textarea id="message" name="message" rows="3"
+          class="mt-1 block w-full p-3 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500"
+          placeholder="Additional Information" required></textarea>
+      </div>
+
+    
+      <div class="mb-4">
+        <button type="submit"
+          class="w-full bg-yellow-500 text-white font-bold py-3 rounded-md hover:bg-yellow-600 transition duration-300">Submit
+          Booking</button>
+      </div>
+    </form>
+
+
+  </div>
+
+</body>
+
+</html>

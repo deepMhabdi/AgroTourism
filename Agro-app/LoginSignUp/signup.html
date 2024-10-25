@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Include Firebase SDKs via CDN -->
+  <script type="module">
+    // Importing Firebase SDKs
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js";
+    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js";
+
+    // Firebase configuration
+    const firebaseConfig = {
+  apiKey: "AIzaSyBbI1uirkvkjImHdCTt5jc5w5Rw_lGQG2M",
+  authDomain: "agro-tourism-82512.firebaseapp.com",
+  projectId: "agro-tourism-82512",
+  storageBucket: "agro-tourism-82512.appspot.com",
+  messagingSenderId: "995431940902",
+  appId: "1:995431940902:web:7767ddaae59e3cf74377e7",
+  measurementId: "G-5VVNHV48GF"
+};
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    // Initialize Firebase services
+    const auth = getAuth(app); // Firebase Auth
+    const db = getFirestore(app); // Firestore
+
+    // Sign up form submission
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("signupForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const fullName = document.getElementById("fullName").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const phone = document.getElementById("phone").value;
+
+        try {
+          // Create a new user
+          const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+          const user = userCredential.user;
+
+          // Save user data to Firestore
+          await setDoc(doc(db, "users", user.uid), {
+            fullName,
+            email,
+            phone,
+            uid: user.uid,
+          });
+
+          alert("Signup successful!");
+          // Redirect to booking page
+          window.location.href = "index.html"; // Adjust as necessary
+        } catch (error) {
+          alert("Error during signup: " + error.message);
+        }
+      });
+    });
+  </script>
+</head>
+<body class="bg-gray-100">
+  <div class="max-w-lg mx-auto my-10 p-6 bg-white rounded-lg shadow-lg">
+    <h1 class="text-4xl font-bold text-center mb-8 text-gray-800">Sign Up</h1>
+    <form id="signupForm">
+      <!-- Full Name -->
+      <div class="mb-4">
+        <label for="fullName" class="block text-sm font-medium text-gray-700">Full Name</label>
+        <input type="text" id="fullName" class="mt-1 block w-full p-3 border-gray-300 rounded-md" placeholder="Full Name" required>
+      </div>
+      <!-- Email -->
+      <div class="mb-4">
+        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+        <input type="email" id="email" class="mt-1 block w-full p-3 border-gray-300 rounded-md" placeholder="Email" required>
+      </div>
+      <!-- Password -->
+      <div class="mb-4">
+        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+        <input type="password" id="password" class="mt-1 block w-full p-3 border-gray-300 rounded-md" placeholder="Password" required>
+      </div>
+      <!-- Phone -->
+      <div class="mb-4">
+        <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
+        <input type="tel" id="phone" class="mt-1 block w-full p-3 border-gray-300 rounded-md" placeholder="Phone Number" required>
+      </div>
+      <!-- Submit Button -->
+      <button type="submit" class="w-full bg-yellow-500 text-white font-bold py-3 rounded-md">Sign Up</button>
+    </form>
+    <p class="mt-4 text-center text-gray-600">
+      Already have an account? 
+      <a href="signin.html" class="text-yellow-500 font-semibold">Go to Sign In</a>
+    </p>
+  </div>
+</body>
+</html>

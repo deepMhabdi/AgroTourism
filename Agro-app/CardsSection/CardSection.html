@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chalo Kisan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Poppins:wght@400;700&display=swap"
+        rel="stylesheet">
+  <link rel="shortcut icon" href="/Agro-app/images/logo.jpg" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+  
+    body {
+      font-family: "Poppins", sans-serif;
+    }
+  </style>
+
+  <script defer>
+    // Toggle the menu open/close
+    function toggleMenu() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    }
+
+    // Add animation when the page is loaded
+    window.onload = function () {
+      document.getElementById('animated-navbar').classList.add('animate__fadeInDown');
+      document.getElementById('animated-hero').classList.add('animate__fadeIn');
+    };
+  </script>
+
+</head>
+
+<body class="bg-gray-100">
+  <nav id="animated-navbar" class="bg-white shadow-lg animate__animated">
+    <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+      <div class="flex items-center">
+        <img src="/Agro-app/images/logo.jpg" alt="Logo"
+            class="w-10 h-10 mr-3 rounded-full border-2 border-gray-300"> 
+        <div class="text-xl font-bold text-gray-800">Chalo Kisan</div>
+    </div>
+      <div class="md:hidden">
+        <button class="text-gray-800 focus:outline-none" onclick="toggleMenu()">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="hidden md:flex space-x-6">
+        <a href="/Agro-app/landingpage/index.html"
+          class="text-gray-800 text-xl px-4 py-2 rounded-lg hover:bg-yellow-400 hover:text-gray-900 transition duration-300">Home</a>
+        <a href="/Agro-app/Activites/activities.html"
+          class="text-gray-800 text-xl px-4 py-2 rounded-lg hover:bg-yellow-400 hover:text-gray-900 transition duration-300">Activities</a>
+        <a href="/Agro-app/CardsSection/CardSection.html"
+          class="text-gray-800 text-xl px-4 py-2 rounded-lg hover:bg-yellow-400 hover:text-gray-900 transition duration-300">Packages</a>
+        <a href="/Agro-app/LoginSignUp/index.html"
+          class="text-gray-800 text-xl px-4 py-2 rounded-lg hover:bg-yellow-400 hover:text-gray-900 transition duration-300">Booking</a>
+        <a href="/Agro-app/LoginSignUp/signin.html"
+          class="text-gray-800 text-xl px-4 py-2 rounded-lg hover:bg-yellow-400 hover:text-gray-900 transition duration-300">Login</a>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden">
+      <div class="px-6 py-2 space-y-2 bg-white shadow-lg">
+        <a href="/Agro-app/landingpage/index.html"
+          class="block text-gray-800 text-xl px-4 py-2 rounded-lg hover:bg-yellow-400 hover:text-gray-900 transition duration-300">Home</a>
+
+        <a href="/Agro-app/Activites/activities.html"
+          class="block text-gray-800 text-xl px-4 py-2 rounded-lg hover:bg-yellow-400 hover:text-gray-900 transition duration-300">Activities</a>
+
+        <a href="/Agro-app/CardsSection/CardSection.html"
+          class="block text-gray-800 text-xl px-4 py-2 rounded-lg hover:bg-yellow-400 hover:text-gray-900 transition duration-300">Packages</a>
+        <a href="/Agro-app/LoginSignUp/index.html"
+          class="block text-gray-800 text-xl px-4 py-2 rounded-lg hover:bg-yellow-400 hover:text-gray-900 transition duration-300">Booking</a>
+
+        <a href="/Agro-app/LoginSignUp/signin.html"
+          class="text-gray-800 text-xl px-4 py-2 rounded-lg hover:bg-yellow-400 hover:text-gray-900 transition duration-300">Login</a>
+      </div>
+    </div>
+  </nav>
+</body>
+<br><br><br>
+
+<body class="bg-gray-100">
+  <div class="max-w-7xl mx-auto py-10">
+    <h2 class="text-2xl font-bold mb-6">Treat yourself to Vacation Tour packages.</h2>
+    <div class="grid gap-6 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+      <!-- Card 1 -->
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <div class="relative">
+          <img src="/Agro-app/images/Ratnagiri.jpg" alt="Ratnagiri Tour" class="w-full h-48 object-cover">
+          <span class="absolute bottom-2 right-2 bg-black text-white text-xs px-2 py-1 rounded">3N/4D</span>
+        </div>
+        <div class="p-4">
+          <p class="text-sm text-gray-600 italic mb-2">Experience the Colorful Culture of Ratnagiri on This Vacation.
+            Indulge in a Relaxing Holiday.</p>
+          <h3 class="text-lg font-bold">Stunning Ratnagiri</h3>
+          <div class="mt-4 flex items-center justify-between text-sm">
+            <div class="flex items-center space-x-2">
+              <span>🏨 4 Hotels</span>
+              <span>🚶‍♂️ 2 Activities</span>
+              <span>🚗 2 Transfers</span>
+            </div>
+          </div>
+          <p class="mt-4 text-gray-500 text-xs">Starting from: <span class="font-bold">Mumbai</span></p>
+          <div class="flex items-center justify-between mt-4">
+            <span class="text-red-500 line-through">₹10,000</span>
+            <span class="text-xl font-bold">₹6999</span>
+            <span class="text-sm text-gray-500">per day</span>
+          </div>
+          <button class="mt-4 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition-colors"> <a href="https://buy.stripe.com/test_dR66pXacn39O51K6ov">Pay
+            Now</a></button>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <div class="relative">
+          <img src="/Agro-app/images/kolhapur.jpg" alt="Kolhapur Tour" class="w-full h-48 object-cover">
+          <span class="absolute bottom-2 right-2 bg-black text-white text-xs px-2 py-1 rounded">4N/5D</span>
+        </div>
+        <div class="p-4">
+          <p class="text-sm text-gray-600 italic mb-2">Experience Kolhapur's vibrant heritage with ancient temples,
+            delicious cuisine, and rich culture for an unforgettable getaway.</p>
+          <h3 class="text-lg font-bold">Pilgrimage to the Heart of Kolhapur</h3>
+          <div class="mt-4 flex items-center justify-between text-sm">
+            <div class="flex items-center space-x-2">
+              <span>🏨 3 Hotels</span>
+              <span>🚶‍♂️ 4 Activities</span>
+              <span>🚗 4 Transfers</span>
+            </div>
+          </div>
+          <div class="flex items-center justify-between mt-4">
+            <span class="text-red-500 line-through">₹12,500</span>
+            <span class="text-xl font-bold">10,500</span>
+            <span class="text-sm text-gray-500">per day</span>
+          </div>
+          <button class="mt-4 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition-colors"> <a href="https://buy.stripe.com/test_5kA5lT1FR6m079S4gp">Pay
+            Now</a></button>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <div class="relative">
+          <img src="/Agro-app/images/Raigad.jpg" alt="Raigad Tour" class="w-full h-48 object-cover">
+          <span class="absolute bottom-2 right-2 bg-black text-white text-xs px-2 py-1 rounded">1N/2D</span>
+        </div>
+        <div class="p-4">
+          <p class="text-sm text-gray-600 italic mb-2">Experience the historical charm of Raigad, where majestic forts,
+            scenic landscapes, and rich Maratha heritage create an unforgettable escape.</p>
+
+          <h3 class="text-lg font-bold">Raigad Tour</h3>
+          <div class="mt-4 flex items-center justify-between text-sm">
+            <div class="flex items-center space-x-2">
+              <span>🏨 2 Hotel</span>
+              <span>🚶‍♂️ 2 Activities</span>
+              <span>🚗 4 Transfers</span>
+            </div>
+          </div>
+          <div class="flex items-center justify-between mt-4">
+            <span class="text-red-500 line-through">₹10,00</span>
+            <span class="text-xl font-bold">₹5999</span>
+            <span class="text-sm text-gray-500">per day</span>
+          </div>
+          <button class="mt-4 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition-colors"> <a href="https://buy.stripe.com/test_7sI8y54S311Gam48wE">Pay
+            Now</a></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<br><br><br>
+<!-- Footer -->
+<footer class="bg-gradient-to-r from-green-200 to-[#F0EBE3] text-gray-800 py-12">
+  <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 lg:max-w-5xl lg:mx-auto">
+    <!-- About Section -->
+    <div class="flex flex-col items-start">
+      <h3 class="text-2xl font-semibold mb-4">ABOUT</h3>
+      <p class="mb-6">
+        We are leading in agro tourism in Maharashtra, promoting farming and increasing knowledge among
+        people.
+      </p>
+      <form class="flex items-center w-full max-w-sm">
+        <input type="email" placeholder="Email Address" class="p-3 w-full text-gray-900 rounded-l-lg outline-none">
+        <button type="submit" class="bg-gray-800 p-3 rounded-r-lg text-white">
+          <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- Explore Section -->
+    <div class="flex flex-col items-start">
+      <h3 class="text-2xl font-semibold mb-4">EXPLORE</h3>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:text-green-600 transition-colors duration-300">About Us</a></li>
+        <li><a href="#" class="hover:text-green-600 transition-colors duration-300">Activities</a></li>
+        <li><a href="#" class="hover:text-green-600 transition-colors duration-300">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="flex flex-col items-start">
+      <h3 class="text-2xl font-semibold mb-4">CONTACT</h3>
+      <p>Miraj Pandharpur road, Bhose</p>
+      <p>Taluka : Miraj, District : Sangli</p>
+      <p class="mt-4 text-green-600">hello@chaloKisan.in</p>
+      <p>8767 526 281</p>
+      <!-- Social Media Icons -->
+      <div class="flex space-x-4 mt-6">
+        <a href="#" class="text-gray-800 hover:text-green-600 transition duration-300">
+          <svg class="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+              d="M22 12C22 5.92487 17.0751 1 11 1C4.92487 1 0 5.92487 0 12C0 17.0751 4.92487 22 11 22C13.2784 22 15.4092 21.3245 17.2071 20.1055C17.8787 19.6562 18.4811 19.1325 19 18.5523L19 21.999L24 17.999L19 13.999L19 17.2475C17.6054 18.6154 15.5642 19.4626 13.3302 19.4626C8.69649 19.4626 5.11661 15.8828 5.11661 11.249C5.11661 6.61514 8.69649 3.03524 13.3302 3.03524C17.964 3.03524 21.5439 6.61514 21.5439 11.249C21.5439 12.9336 21.1567 14.5276 20.4572 15.9433C19.7577 17.3589 18.7857 18.5722 17.6045 19.4885L17.6045 17.246L15.6045 19.246L19.6045 23.246L23.6045 19.246L19.6045 15.246L19.6045 19.246L17.6045 17.246C16.0052 16.1876 14.0984 15.504 12 15.504L12 11.504L17.3302 7.504L21.9969 11.9049L12 20.885L2.00305 11.9049L7.33018 7.504L12 11.504C14.087 11.504 15.9938 12.1876 17.5932 13.246L19.5932 11.246L24.5932 16.246L19.5932 21.246L17.5932 19.246L12 14.5125L17.9931 7.5125L24 12L12 22.0015L2 12L12 2Z" />
+          </svg>
+        </a>
+        <a href="#" class="text-gray-800 hover:text-green-600 transition duration-300">
+          <svg class="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+              d="M19 0H5C2.243 0 0 2.243 0 5V19C0 21.757 2.243 24 5 24H19C21.757 24 24 21.757 24 19V5C24 2.243 21.757 0 19 0ZM9 19H7V9H9V19ZM8 8C7.447 8 7 7.552 7 7C7 6.448 7.447 6 8 6C8.553 6 9 6.448 9 7C9 7.552 8.553 8 8 8ZM19 19H17V14C17 13.447 16.553 13 16 13H15C14.447 13 14 13.447 14 14V19H12V9H14V11H14.531C15.266 10.293 16.211 10 17.134 10C18.961 10 20 11.422 20 13.373V19H19Z" />
+          </svg>
+        </a>
+        <a href="#" class="text-gray-800 hover:text-green-600 transition duration-300">
+          <svg class="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+              d="M22.675 0H1.326C.593 0 0 .593 0 1.326V22.675C0 23.407.593 24 1.326 24H22.675C23.407 24 24 23.407 24 22.675V1.326C24 .593 23.407 0 22.675 0ZM12 18C8.132 18 5 14.867 5 11C5 7.133 8.132 4 12 4C15.867 4 19 7.133 19 11C19 14.867 15.867 18 12 18Z" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="border-t border-gray-400 mt-8 pt-6 text-center text-sm text-gray-600">
+    ©Copyright 2024 All Right Reserved, Chalo Kisan
+  </div>
+</footer>
+
+</body>
+
+</html>
