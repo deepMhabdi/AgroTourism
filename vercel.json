@@ -1,0 +1,10 @@
+{
+    "public": "public",
+    "cleanUrls": true,
+    "rewrites": [
+      { "source": "/signin", "destination": "/signin.html" },
+      { "source": "/signup", "destination": "/signup.html" },
+      { "source": "/activities", "destination": "/activities.html" }
+    ]
+  }
+  
